@@ -1,22 +1,46 @@
 // Assignment code here
+var passwordInfo = {
+  lower: ("abcdefghijklmnopqrstuvwxyz").split(""),
+  upper: ("ABCDEFGHIJKLMNOPQRSTUVWXYZ").split(""),
+  number: ("0123456789").split(""),
+  sChar: (" !#$%&()*+,-./:;<=>?@[\]^_`{|}~").split("")
+};
 
 function startPrompt() {
   // Ask user how many Char in Password, between 8 - 128
   var selectPrompt = window.prompt("How many characters would you like your password? Choose between 8 and 128");
   selectPrompt = parseInt(selectPrompt);
-  if (selectPrompt >7 && selectPrompt < 129){
-    console.log(randomLetter());
-  } else {
+  while (selectPrompt > 7 && selectPrompt < 129){
+    console.log(randomLetterL(), randomLetterU(), randomNum(), randomSChar());
+    break;
+  } if (!selectPrompt > 7 && selectPrompt < 129){
     window.confirm("This needs a valid value!");
     startPrompt();
   }
 };
 
-var randomLetter = function() {
+var randomLetterL = function() {
   var randomGen = Math.floor(Math.random()*passwordInfo.lower.length);
   var randomEle = passwordInfo.lower[randomGen]; 
   return randomEle;
 };
+var randomLetterU = function() {
+  var randomGen = Math.floor(Math.random()*passwordInfo.upper.length);
+  var randomEle = passwordInfo.upper[randomGen]; 
+  return randomEle;
+};
+var randomNum = function() {
+  var randomGen = Math.floor(Math.random()*passwordInfo.number.length);
+  var randomEle = passwordInfo.number[randomGen]; 
+  return randomEle;
+};
+var randomSChar = function() {
+  var randomGen = Math.floor(Math.random()*passwordInfo.sChar.length);
+  var randomEle = passwordInfo.sChar[randomGen]; 
+  return randomEle;
+};
+
+
 
 /*
 function specialChar() {
@@ -45,15 +69,10 @@ function writePassword() {
 
 }
 */
-var passwordInfo = {
-  lower: ("abcdefghijklmnopqrstuvwxyz").split(""),
-  upper: ("ABCDEFGHIJKLMNOPQRSTUVWXYZ").split(""),
-  number: ("0123456789").split(""),
-  sChar: (" !#$%&()*+,-./:;<=>?@[\]^_`{|}~").split("")
-};
 
 
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+//generateBtn.addEventListener("click", writePassword);
 
+startPrompt();

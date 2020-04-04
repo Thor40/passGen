@@ -1,61 +1,44 @@
-// Assignment code here
-var passwordInfo = {
-  lower: ("abcdefghijklmnopqrstuvwxyz").split(""),
-  upper: ("ABCDEFGHIJKLMNOPQRSTUVWXYZ").split(""),
-  number: ("0123456789").split(""),
-  sChar: (" !#$%&()*+,-./:;<=>?@[\]^_`{|}~").split("")
-};
 
-function startPrompt() {
-  // Ask user how many Char in Password, between 8 - 128
-  var selectPrompt = window.prompt("How many characters would you like your password? Choose between 8 and 128");
-  selectPrompt = parseInt(selectPrompt);
-  while (selectPrompt > 7 && selectPrompt < 129){
-    console.log(randomLetterL(), randomLetterU(), randomNum(), randomSChar());
-    break;
-  } if (!selectPrompt > 7 && selectPrompt < 129){
-    window.confirm("This needs a valid value!");
-    startPrompt();
-  }
-};
+var charTypes = {
 
-var randomLetterL = function() {
-  var randomGen = Math.floor(Math.random()*passwordInfo.lower.length);
-  var randomEle = passwordInfo.lower[randomGen]; 
-  return randomEle;
-};
-var randomLetterU = function() {
-  var randomGen = Math.floor(Math.random()*passwordInfo.upper.length);
-  var randomEle = passwordInfo.upper[randomGen]; 
-  return randomEle;
-};
-var randomNum = function() {
-  var randomGen = Math.floor(Math.random()*passwordInfo.number.length);
-  var randomEle = passwordInfo.number[randomGen]; 
-  return randomEle;
-};
-var randomSChar = function() {
-  var randomGen = Math.floor(Math.random()*passwordInfo.sChar.length);
-  var randomEle = passwordInfo.sChar[randomGen]; 
-  return randomEle;
-};
-
-
-
-/*
-function specialChar() {
-  chooseNum = window.confirm("Will this contain numbers?");
-  chooseL = window.confirm("Will this contain Lowercase Letters?");
-  chooseU = window.confirm("Will this contain Uppercase Letters?");
-  chooseS = window.confirm("Will this contain Special Characters?");
-  if(!chooseNum){
-
-  }
-};
-
-passPrompt();
-
-
+  'lower': ("abcdefghijklmnopqrstuvwxyz"),
+  'upper': ("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
+  "number": ("0123456789"),
+  "special": (" !#$%&()*+,-./:;<=>?@[\]^_`{|}~"),
+  };
+  
+  var inputCharSet = "";
+  var choices = "";
+  function generatePassword() {
+      input = parseInt(window.prompt("How many characters would you like your password? Choose between 8 and 128"));
+      if (!input > 7 || !input > 129) {
+          window.confirm("This needs a valid value!");
+          generatePassword();
+      }
+          else if (input > 7 && input < 129) {
+          if (userLower = window.confirm("Will this password contain the lowercase alphabet?")) {
+              inputCharSet += charTypes.lower;
+          }
+          if (userUpper = window.confirm("Will this password contain the uppercase alphabet?")) {
+              inputCharSet += charTypes.upper;
+          }
+          if (userNumber = window.confirm("Will this password contain numbers?")) {
+              inputCharSet += charTypes.number;
+          }
+          if (userSpecial = window.confirm("Will this password contain special characters?")) {
+              inputCharSet += charTypes.special;
+          }
+          var totalInput = inputCharSet;
+          console.log(choices);
+  
+      for (var i = 0; i < input; i++) {
+          choices = totalInput[Math.floor(Math.random() * totalInput.length)];
+          return choices;
+          }
+      }
+  };
+  
+  generatePassword();
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -68,7 +51,6 @@ function writePassword() {
   passwordText.value = password;
 
 }
-*/
 
 
 

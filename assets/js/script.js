@@ -14,27 +14,29 @@ var charTypes = {
           window.confirm("This needs a valid value!");
       }
           else if (input > 7 && input < 129) {
-            console.log(input);
-          if (userLower = window.confirm("Will this password contain the lowercase alphabet?")) {
+          (userLower = window.confirm("Will this password contain the lowercase alphabet?"))
+            if (userLower == true) {
               inputCharSet += charTypes.lower;
+            }
+          (userUpper = window.confirm("Will this password contain the uppercase alphabet?")) 
+          if (userUpper == true) {
+            inputCharSet += charTypes.upper;
           }
-          if (userUpper = window.confirm("Will this password contain the uppercase alphabet?")) {
-              inputCharSet += charTypes.upper;
+          (userNumber = window.confirm("Will this password contain numbers?")) 
+          if (userNumber == true) {
+            inputCharSet += charTypes.number;
           }
-          if (userNumber = window.confirm("Will this password contain numbers?")) {
-              inputCharSet += charTypes.number;
+          (userSpecial = window.confirm("Will this password contain special characters?"))
+          if (userSpecial == true) {
+            inputCharSet += charTypes.special;  
           }
-          if (userSpecial = window.confirm("Will this password contain special characters?")) {
-              inputCharSet += charTypes.special;
-          }
-          console.log(inputCharSet);
 
           var choices = [];
           
     
       for (i = 0; i < input; i++) {
         choices.push(inputCharSet[Math.floor((Math.random() * inputCharSet.length) + 0)]);
-        var results = choices.join();
+        var results = choices.join("");
           }
           return(results);
       }

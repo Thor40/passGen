@@ -36,7 +36,7 @@ var charTypes = {
         choices.push(inputCharSet[Math.floor((Math.random() * inputCharSet.length) + 0)]);
         var results = choices.join();
           }
-          console.log(results);
+          return(results);
       }
   };
   
